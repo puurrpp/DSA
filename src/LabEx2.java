@@ -18,18 +18,18 @@ public class LabEx2 {
 				String b = stuff.pop();
 				String a = stuff.pop();
 
-				stuff.push("("+a+" "+op+" "+b+")");
+				stuff.push("(" + a + " " + op + " " + b + ")");
 			} else {
 				stuff.push(op);
 			}
 		}
 
-		String output = "";
+		StringBuilder output = new StringBuilder();
 
 		while (!stuff.isEmpty())
-			output += stuff.pop();
+			output.append(stuff.pop());
 
-		return output;
+		return output.toString();
 	}
 
 	static double evalPostfix(String e) {
@@ -85,6 +85,5 @@ public class LabEx2 {
 			System.out.println("eval: " + evalPostfix(s));
 		}
 	}
-
 
 }
