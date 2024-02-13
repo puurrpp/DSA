@@ -43,20 +43,11 @@ public class LabEx2 {
 				double a = Double.parseDouble(stuff.pop());
 
 				switch (op.charAt(0)) {
-					case '+':
-						stuff.push(String.valueOf(a + b));
-						break;
-					case '-':
-						stuff.push(String.valueOf(a - b));
-						break;
-					case '*':
-						stuff.push(String.valueOf(a * b));
-						break;
-					case '/':
-						stuff.push(String.valueOf(a / b));
-						break;
-					case '^':
-						stuff.push(String.valueOf(Math.pow(a, b)));
+					case '+' -> stuff.push(String.valueOf(a + b));
+					case '-' -> stuff.push(String.valueOf(a - b));
+					case '*' -> stuff.push(String.valueOf(a * b));
+					case '/' -> stuff.push(String.valueOf(a / b));
+					case '^' -> stuff.push(String.valueOf(Math.pow(a, b)));
 				}
 			} else {
 				stuff.push(op);
