@@ -4,14 +4,10 @@ public class Stack<T> {
 	private int maxSize = 1000;
 
 	Stack() {
-		_new();
+		_stack = new Object[maxSize];
 	}
 	Stack(int size) {
-		maxSize = size;
-		_new();
-	}
-
-	private void _new() {
+		if (size > 0) maxSize = size;
 		_stack = new Object[maxSize];
 	}
 
