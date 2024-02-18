@@ -1,4 +1,4 @@
-// Mendoza, Kyran Xandre O.
+// Bihasa, Christian A. & Mendoza, Kyran Xandre O.
 // ICS2605 1CSA
 // Lab Exercise 2 Part 1
 
