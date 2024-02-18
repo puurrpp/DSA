@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Stack<T> {
 	Object[] _stack;
 	private int top = -1;
@@ -33,5 +35,14 @@ public class Stack<T> {
 
 	void clear() {
 		top = -1;
+	}
+
+	@Override
+	public String toString() {
+		return "Stack {" +
+				"_stack=" + Arrays.toString(_stack) +
+				", top=" + top +
+				", maxSize=" + maxSize +
+				'}';
 	}
 }
