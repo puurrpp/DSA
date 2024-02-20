@@ -39,10 +39,14 @@ public class Stack<T> {
 
 	@Override
 	public String toString() {
-		return "Stack {" +
-				"_stack=" + Arrays.toString(_stack) +
-				", top=" + top +
-				", maxSize=" + maxSize +
-				'}';
+		StringBuilder outputBuilder = new StringBuilder("Stack {\n  _stack=[");
+		for (int i = 0; i < top; i++)
+			outputBuilder.append(_stack[i]).append(",");
+		outputBuilder
+				.append("],\n  top=").append(top)
+				.append(",\n  maxSize=").append(maxSize)
+				.append("\n}");
+
+		return outputBuilder.toString();
 	}
 }
