@@ -24,12 +24,12 @@ public class LabEx2 {
 			}
 		}
 
-		String output = "";
+		StringBuilder output = new StringBuilder();
 
 		while (!stuff.isEmpty())
-			output += stuff.pop();
+			output.append(stuff.pop());
 
-		return output;
+		return output.toString();
 	}
 
 	static double evalPostfix(String e) {
@@ -108,12 +108,12 @@ public class LabEx2 {
 	static String infixToPostfix(String e) {
 		String[] ops = e.split(" ");
 		Stack<String> stack = new Stack<>();
-		String output = "";
+		StringBuilder output = new StringBuilder();
 
 		for (String op : ops) {
 			// operand
 			if (!"+-%*/^()".contains(op))
-				output += (op + " ");
+				output.append(op).append(" ");
 
 			// operators
 			else if (stack.isEmpty() || stack.peek().equals("(")) {
@@ -121,7 +121,7 @@ public class LabEx2 {
 
 			} else if (op.equals(")")) {
 				while (!stack.peek().equals("("))
-					output += (stack.pop() + " ");
+					output.append(stack.pop()).append(" ");
 				stack.pop();
 
 			} else if (incomingPrecedence(op) > inStackPrecedence(stack.peek())) {
@@ -129,15 +129,15 @@ public class LabEx2 {
 
 			} else {
 				while (!stack.isEmpty() && (incomingPrecedence(op) <= inStackPrecedence(stack.peek())))
-					output += (stack.pop() + " ");
+					output.append(stack.pop()).append(" ");
 				stack.push(op);
 			}
 		}
 
 		while (!stack.isEmpty()) {
-			output += (stack.pop() + " ");
+			output.append(stack.pop()).append(" ");
 		}
-		return output.trim();
+		return output.toString().trim();
 	}
 
 	public static void main(String[] args) {
