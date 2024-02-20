@@ -1,4 +1,4 @@
-// Bihasa, Christian A. & Mendoza, Kyran Xandre O.
+// Bihasa, Christian Louie A. & Mendoza, Kyran Xandre O.
 // ICS2605 1CSA
 // Lab Exercise 2 Part 1
 
@@ -14,7 +14,7 @@ public class LabEx2 {
 		Stack<String> stuff = new Stack<>(ops.length);
 
 		for (String op : ops) {
-			if ("+-*/^".contains(op)) {
+			if ("+-*/%^".contains(op)) {
 				String b = stuff.pop();
 				String a = stuff.pop();
 
@@ -38,7 +38,7 @@ public class LabEx2 {
 		Stack<String> stuff = new Stack<>(ops.length);
 
 		for (String op : ops) {
-			if ("+-*/^".contains(op)) {
+			if ("+-*/%^".contains(op)) {
 				double b = Double.parseDouble(stuff.pop());
 				double a = Double.parseDouble(stuff.pop());
 
@@ -47,6 +47,7 @@ public class LabEx2 {
 					case '-' -> stuff.push(String.valueOf(a - b));
 					case '*' -> stuff.push(String.valueOf(a * b));
 					case '/' -> stuff.push(String.valueOf(a / b));
+					case '%' -> stuff.push(String.valueOf(a % b));
 					case '^' -> stuff.push(String.valueOf(Math.pow(a, b)));
 				}
 			} else {
@@ -58,7 +59,7 @@ public class LabEx2 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Bihasa, Christian A.");
+		System.out.println("Bihasa, Christian Louie A.");
 		System.out.println("Mendoza, Kyran Xandre O.");
 		System.out.println();
 
