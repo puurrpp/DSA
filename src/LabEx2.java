@@ -58,51 +58,86 @@ public class LabEx2 {
 		return Double.parseDouble(stuff.pop());
 	}
 
+	static int inStackPrecedence(String op) {
+		switch (op) {
+			case "+", "-" -> {
+				return 10;
+			}
+			case "%" -> {
+				return 20;
+			}
+			case "*", "/" -> {
+				return 30;
+			}
+			case "^" -> {
+				return 40;
+			}
+			case "(" -> {
+				return 50;
+			}
+			default -> {
+				return -1;
+			}
+		}
+	}
+
+	static int incomingPrecedence(String op) {
+		switch (op) {
+			case "+", "-" -> {
+				return 10;
+			}
+			case "%" -> {
+				return 20;
+			}
+			case "*", "/" -> {
+				return 30;
+			}
+			case "^" -> {
+				return 45;
+			}
+			case "(" -> {
+				return 55;
+			}
+			default -> {
+				return -1;
+			}
+		}
+	}
+
+
 	static String infixToPostfix(String e) {
 		String[] ops = e.split(" ");
 		Stack<String> stack = new Stack<>();
-		StringBuilder output = new StringBuilder();
+		String output = "";
+
 		for (String op : ops) {
-			switch (op) {
-				case "+":
-				case "-":
-					while (!stack.isEmpty() && !stack.peek().equals("(")) {
-						output.append(stack.pop()).append(" ");
-					}
-					stack.push(op);
-					break;
-				case "*":
-				case "/":
-				case "%":
-					while (!stack.isEmpty() && (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("%"))) {
-						output.append(stack.pop()).append(" ");
-					}
-					stack.push(op);
-					break;
-				case "^":
-					while (!stack.isEmpty() && stack.peek().equals("^")) {
-						output.append(stack.pop()).append(" ");
-					}
-					stack.push(op);
-					break;
-				case "(":
-					stack.push(op);
-					break;
-				case ")":
-					while (!stack.isEmpty() && !stack.peek().equals("(")) {
-						output.append(stack.pop()).append(" ");
-					}
-					stack.pop();
-					break;
-				default:
-					output.append(op).append(" ");
-					break;
+			// operand
+			if (!"+-%*/^()".contains(op))
+				output += (op + " ");
+
+			// operators
+			else if (stack.isEmpty() || stack.peek().equals("(")) {
+				stack.push(op);
+
+			} else if (op.equals(")")) {
+				while (!stack.peek().equals("("))
+					output += (stack.pop() + " ");
+				stack.pop();
+
+			} else if (incomingPrecedence(op) > inStackPrecedence(stack.peek())) {
+				stack.push(op);
+
+			} else {
+				while (!stack.isEmpty() && (incomingPrecedence(op) <= inStackPrecedence(stack.peek())))
+					output += (stack.pop() + " ");
+				stack.push(op);
 			}
 		}
+
 		while (!stack.isEmpty()) {
-			output.append(stack.pop()).append(" ");
+			output += (stack.pop() + " ");
 		}
-		return output.toString().trim();
+		return output.trim();
 	}
 
 	public static void main(String[] args) {
