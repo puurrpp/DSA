@@ -58,6 +58,53 @@ public class LabEx2 {
 		return Double.parseDouble(stuff.pop());
 	}
 
+	static String infixToPostfix(String e) {
+		String[] ops = e.split(" ");
+		Stack<String> stack = new Stack<>();
+		StringBuilder output = new StringBuilder();
+		for (String op : ops) {
+			switch (op) {
+				case "+":
+				case "-":
+					while (!stack.isEmpty() && !stack.peek().equals("(")) {
+						output.append(stack.pop()).append(" ");
+					}
+					stack.push(op);
+					break;
+				case "*":
+				case "/":
+				case "%":
+					while (!stack.isEmpty() && (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("%"))) {
+						output.append(stack.pop()).append(" ");
+					}
+					stack.push(op);
+					break;
+				case "^":
+					while (!stack.isEmpty() && stack.peek().equals("^")) {
+						output.append(stack.pop()).append(" ");
+					}
+					stack.push(op);
+					break;
+				case "(":
+					stack.push(op);
+					break;
+				case ")":
+					while (!stack.isEmpty() && !stack.peek().equals("(")) {
+						output.append(stack.pop()).append(" ");
+					}
+					stack.pop();
+					break;
+				default:
+					output.append(op).append(" ");
+					break;
+			}
+		}
+		while (!stack.isEmpty()) {
+			output.append(stack.pop()).append(" ");
+		}
+		return output.toString().trim();
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Bihasa, Christian Louie A.");
 		System.out.println("Mendoza, Kyran Xandre O.");
@@ -75,6 +122,10 @@ public class LabEx2 {
 			System.out.println("postfix: " + s);
 			System.out.println("infix: " + postfixToInfix(s));
 			System.out.println("eval: " + evalPostfix(s));
+		} else if (t == 2) {
+			System.out.println("infix: " + s);
+			System.out.println("postfix: " + infixToPostfix(s));
+			System.out.println("eval: " + evalPostfix(infixToPostfix(s)));
 		}
 	}
 
