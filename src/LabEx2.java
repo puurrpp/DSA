@@ -156,11 +156,11 @@ public class LabEx2 {
 		if (t == 1) {
 			System.out.println("postfix: " + s);
 			System.out.println("infix: " + postfixToInfix(s));
-			System.out.println("eval: " + evalPostfix(s));
+			System.out.println("value: " + evalPostfix(s));
 		} else if (t == 2) {
 			System.out.println("infix: " + s);
 			System.out.println("postfix: " + infixToPostfix(s));
-			System.out.println("eval: " + evalPostfix(infixToPostfix(s)));
+			System.out.println("value: " + evalPostfix(infixToPostfix(s)));
 		}
 	}
 
