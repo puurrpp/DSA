@@ -24,12 +24,12 @@ public class LabEx2 {
 			}
 		}
 
-		StringBuilder output = new StringBuilder();
+		String output = "";
 
 		while (!stuff.isEmpty())
-			output.append(stuff.pop());
+			output += stuff.pop();
 
-		return output.toString();
+		return output;
 	}
 
 	static double evalPostfix(String e) {
@@ -42,13 +42,13 @@ public class LabEx2 {
 				double b = Double.parseDouble(stuff.pop());
 				double a = Double.parseDouble(stuff.pop());
 
-				switch (op.charAt(0)) {
-					case '+' -> stuff.push(String.valueOf(a + b));
-					case '-' -> stuff.push(String.valueOf(a - b));
-					case '*' -> stuff.push(String.valueOf(a * b));
-					case '/' -> stuff.push(String.valueOf(a / b));
-					case '%' -> stuff.push(String.valueOf(a % b));
-					case '^' -> stuff.push(String.valueOf(Math.pow(a, b)));
+				switch (op) {
+					case "+" -> stuff.push(String.valueOf(a + b));
+					case "-" -> stuff.push(String.valueOf(a - b));
+					case "*" -> stuff.push(String.valueOf(a * b));
+					case "/" -> stuff.push(String.valueOf(a / b));
+					case "%" -> stuff.push(String.valueOf(a % b));
+					case "^" -> stuff.push(String.valueOf(Math.pow(a, b)));
 				}
 			} else {
 				stuff.push(op);
