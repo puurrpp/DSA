@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Stack<T> {
 	Object[] _stack;
 	private int top = -1;
