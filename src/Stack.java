@@ -12,10 +12,12 @@ public class Stack<T> {
 	}
 
 	void push(T el) {
+		if (isFull()) throw new IndexOutOfBoundsException("pushing to full stack");
 		_stack[++top] = el;
 	}
 
 	T pop() {
+		if (isEmpty()) throw new IndexOutOfBoundsException("popping on empty stack");
 		return (T) _stack[top--];
 	}
 
