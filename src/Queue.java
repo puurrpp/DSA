@@ -64,8 +64,7 @@ public class Queue<T> {
 		count = 0;
 	}
 
-	@Override
-	public String toString() {
+	public String debug() {
 		StringBuilder output = new StringBuilder("Queue [max=" + maxSize + "] {" +
 				"\nq: [");
 
@@ -81,5 +80,19 @@ public class Queue<T> {
 				.append("\n}");
 
 		return output.toString();
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder output = new StringBuilder("Queue [");
+
+		int i = front;
+		if (!isEmpty())
+			do {
+				output.append(q[i]).append(",");
+				i = ++i % maxSize;
+			} while (i != rear);
+
+		return output.append("]").toString();
 	}
 }
