@@ -4,8 +4,10 @@
 
 
 import java.util.Scanner;
+
 public class LabEx3 {
 	static Scanner scanner = new Scanner(System.in);
+
 	public static void main(String[] args) {
 		System.out.println("Mendoza, Kyran Xandre O.");
 		System.out.println();
@@ -18,12 +20,47 @@ public class LabEx3 {
 			System.out.print("Input n (number of children): ");
 			int n = scanner.nextInt();
 
-			Queue<String> queue = new Queue<>();
+			System.out.print("children: ");
+			Queue<String> children = new Queue<>(n);
 			char c = 'A';
-			for (int i=0; i < n; i++)
-				queue.enqueue(String.valueOf(c++));
+			for (int i = 0; i < n; i++) {
+				System.out.print(c + " ");
+				children.enqueue(String.valueOf(c++));
+			}
+			System.out.println();
 
-			System.out.println(queue);
+			// game start
+			Stack<String> winners = new Stack<>(n);
+
+			// rounds loop:
+			for (int i = 1; i <= n; i++) {
+
+				// intentionally leave last step out of loop
+				for (int j = 1; j < s; j++)
+					children.enqueue(children.dequeue());
+				// eliminate 1 child
+				winners.push(children.dequeue());
+
+				System.out.print("after round " + i + ": ");
+				// print survivors
+				if (children.isEmpty())
+					System.out.print("Empty");
+				else
+					for (int j = 0; j < children.count; j++) {
+						String child = children.dequeue();
+						System.out.print(child + " ");
+						children.enqueue(child);
+					}
+
+				// fix spacing
+				System.out.println();
+			}
+
+			System.out.print("winning order: ");
+			while (!winners.isEmpty())
+				System.out.print(winners.pop() + " ");
+
+			// System.out.println(children.debug());
 		}
 	}
 }
