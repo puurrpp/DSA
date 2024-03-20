@@ -6,7 +6,7 @@ public class Queue<T> {
 	Object[] q;
 	private int front = -1;
 	private int rear = -1;
-	private int count = 0;
+	int count = 0;
 	private int maxSize = 100;
 
 	Queue() {
