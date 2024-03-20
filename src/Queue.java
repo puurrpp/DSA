@@ -69,7 +69,7 @@ public class Queue<T> {
 				"\nq: [");
 
 		for (int i = 0; i < maxSize; i++)
-			output.append(q[i].toString()).append(",");
+			output.append(q[i]).append(",");
 
 		output
 				.append("]\nfront: ").append(front)
