@@ -1,12 +1,12 @@
-public class Stack<T> {
+public class KStack<T> {
 	Object[] _stack;
 	private int top = -1;
 	private int maxSize = 1000;
 
-	Stack() {
+	KStack() {
 		_stack = new Object[maxSize];
 	}
-	Stack(int size) {
+	KStack(int size) {
 		if (size > 0) maxSize = size;
 		_stack = new Object[maxSize];
 	}

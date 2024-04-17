@@ -21,7 +21,7 @@ public class LabEx3 {
 			int n = scanner.nextInt();
 
 			System.out.print("children: ");
-			Queue<String> children = new Queue<>(n);
+			KQueue<String> children = new KQueue<>(n);
 			char c = 'A';
 			for (int i = 0; i < n; i++) {
 				System.out.print(c + " ");
@@ -30,7 +30,7 @@ public class LabEx3 {
 			System.out.println();
 
 			// game start
-			Stack<String> winners = new Stack<>(n);
+			KStack<String> winners = new KStack<>(n);
 
 			// rounds loop:
 			for (int i = 1; i <= n; i++) {
@@ -61,6 +61,12 @@ public class LabEx3 {
 				System.out.print(winners.pop() + " ");
 
 			// System.out.println(children.debug());
+
+		} else if (t == 2) {
+			System.out.print("Input s: ");
+			String[] inputs = scanner.nextLine().split(" ");
+
+			
 		}
 	}
 }

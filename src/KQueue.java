@@ -2,21 +2,21 @@
 // ICS2605 1CSA
 // Lab Exercise 3
 
-public class Queue<T> {
+public class KQueue<T> {
 	Object[] q;
 	private int front = -1;
 	private int rear = -1;
 	int count = 0;
 	private int maxSize = 100;
 
-	Queue() {
+	KQueue() {
 		q = new Object[maxSize];
 	}
-	Queue(int size) {
+	KQueue(int size) {
 		if (size > 0) maxSize = size;
 		q = new Object[maxSize];
 	}
-	Queue(Queue<T> source) {
+	KQueue(KQueue<T> source) {
 		maxSize = source.maxSize;
 		q = source.q;
 		front = source.front;
