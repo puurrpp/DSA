@@ -1,72 +1,97 @@
-// Mendoza, Kyran Xandre O.
-// ICS2605 1CSA
-// Lab Exercise 3
-
-
+//Richard Earl T. Gaffud
+//Kyran Xandre Mendoza
+// ICS 2605
+//1CSA
+//Lab Exercise 3
 import java.util.Scanner;
 
 public class LabEx3 {
-	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("Mendoza, Kyran Xandre O.");
-		System.out.println();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Gaffud, Richard Earl & Mendoza, Kyran Xandre");
+		System.out.print("Please Enter value for t:");
+		int t = in.nextInt();
+        in.nextLine();
 
-		System.out.print("Input t: ");
-		int t = scanner.nextInt();
-		if (t == 1) {
-			System.out.print("Input s (number of syllables): ");
-			int s = scanner.nextInt();
-			System.out.print("Input n (number of children): ");
-			int n = scanner.nextInt();
+		switch (t) {
+			case 1: {
+                System.out.print("Enter the number of syllables of the song:");
+                int s = in.nextInt();
+                System.out.print("Enter number of children who will play the game(n<=26):");
+                int n = in.nextInt();
+                Queue<String> nchildren = new Queue<>(n); // initialize queue with n children
+                Stack<String> elimchildren = new Stack<>(n); // initialize stack with n children
 
-			System.out.print("children: ");
-			KQueue<String> children = new KQueue<>(n);
-			char c = 'A';
-			for (int i = 0; i < n; i++) {
-				System.out.print(c + " ");
-				children.enqueue(String.valueOf(c++));
-			}
-			System.out.println();
+                // Enter for loop to populate queues
+                for (char letter = 'A'; letter < 'A' + n; letter++) {
+                    nchildren.enqueue(String.valueOf(letter));
+                }
 
-			// game start
-			KStack<String> winners = new KStack<>(n);
+                // Print children from first row to last row
+                System.out.println("Children:");
+                for (char letter = 'A'; letter < 'A' + n; letter++) {
+                    System.out.print(letter + " ");
+                }
+                System.out.println(); // to provide one space after printing children names.
 
-			// rounds loop:
-			for (int i = 1; i <= n; i++) {
+                // Start of the game
+                int round = 1;
+                while (!nchildren.isEmpty()) {
+                    System.out.println("after round " + round + ":");
+                    for (int sa = 1; sa <= s; sa++) {
+                        String CurrentChild = nchildren.dequeue(); // to dequeue the current child
+                        // Condition to check if it is not the last syllable yet
+                        if (sa != s) {
+                            nchildren.enqueue(CurrentChild); // enqueue back if not last child yet
+                        } else {
+                            elimchildren.push(CurrentChild); // push to stack if it is the last child
+                        }
+                    }
+                    // Printing of queue contents; prints "Empty" when queue is empty
+                    if (nchildren.isEmpty())
+                        System.out.println("Empty");
+                    else {
+                        for (int i = 0; i < nchildren.size(); i++) {
+                            String child = nchildren.dequeue();
+                            System.out.print(child + " ");
+                            nchildren.enqueue(child);
+                        }
+                        System.out.println();
+                    }
+                    round++;
+                }
 
-				// intentionally leave last step out of loop
-				for (int j = 1; j < s; j++)
-					children.enqueue(children.dequeue());
-				// eliminate 1 child
-				winners.push(children.dequeue());
+                // Print the winning order
+                System.out.print("\nWinning order: ");
+                while (!elimchildren.isEmpty()) {
+                    System.out.print(elimchildren.pop() + " ");
 
-				System.out.print("after round " + i + ": ");
-				// print survivors
-				if (children.isEmpty())
-					System.out.print("Empty");
-				else
-					for (int j = 0; j < children.count; j++) {
-						String child = children.dequeue();
-						System.out.print(child + " ");
-						children.enqueue(child);
-					}
+                }
+                break;
+            }
 
-				// fix spacing
-				System.out.println();
-			}
+			case 2: {
+                System.out.print("Input s:");
+                String s = in.nextLine();
+                String[] a = s.split(" ");
 
-			System.out.print("winning order: ");
-			while (!winners.isEmpty())
-				System.out.print(winners.pop() + " ");
+                SLL<Integer> list = new SLL<>();
 
-			// System.out.println(children.debug());
+                System.out.println("Linked List Contents: ");
+                for (String w : a) {
+                    list.insertAsc(Integer.valueOf(w));
+                    System.out.println(list);
+                }
 
-		} else if (t == 2) {
-			System.out.print("Input s: ");
-			String[] inputs = scanner.nextLine().split(" ");
-
-			
+                System.out.println("Linked List Without Duplicates Contents:");
+                list.removeDups();
+                System.out.println(list);
+            }
 		}
 	}
 }
+
+    
+    
+
