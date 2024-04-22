@@ -52,7 +52,7 @@ public class LabEx3 {
                     if (nchildren.isEmpty())
                         System.out.println("Empty");
                     else {
-                        for (int i = 0; i < nchildren.size(); i++) {
+                        for (int i = 0; i < nchildren.count; i++) {
                             String child = nchildren.dequeue();
                             System.out.print(child + " ");
                             nchildren.enqueue(child);

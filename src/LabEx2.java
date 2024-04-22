@@ -11,7 +11,7 @@ public class LabEx2 {
 
 		String[] ops = e.split(" ");
 
-		KStack<String> stuff = new KStack<>(ops.length);
+		Stack<String> stuff = new Stack<>(ops.length);
 
 		for (String op : ops) {
 			if ("+-*/%^".contains(op)) {
@@ -35,7 +35,7 @@ public class LabEx2 {
 	static double evalPostfix(String e) {
 		String[] ops = e.split(" ");
 
-		KStack<String> stuff = new KStack<>(ops.length);
+		Stack<String> stuff = new Stack<>(ops.length);
 
 		for (String op : ops) {
 			if ("+-*/%^".contains(op)) {
@@ -107,7 +107,7 @@ public class LabEx2 {
 
 	static String infixToPostfix(String e) {
 		String[] ops = e.split(" ");
-		KStack<String> stack = new KStack<>();
+		Stack<String> stack = new Stack<>();
 		StringBuilder output = new StringBuilder();
 
 		for (String op : ops) {
